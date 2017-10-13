@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">快捷支付</string>
+
+    <string name="alipay_fukuan">付款（支）</string>
+    <string name="alipay_scan">扫码（支）</string>
+    <string name="alipay_shoukuan">收款（支）</string>
+    <string name="wx_fukuan">付款（微）</string>
+    <string name="wx_scan">扫码（微）</string>
+    <string name="wx_shoukuan">收款微）</string>
+
+</resources>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/alipay_fukuan"
+        android:shortcutId="OspTabHostActivity"
+        android:shortcutShortLabel="@string/alipay_fukuan">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.suda.openpayshortcut.activity.pay.OspTabHostActivity"
+            android:targetPackage="com.suda.openpayshortcut" />
+    </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/alipay_scan"
+        android:shortcutId="MainCaptureActivity"
+        android:shortcutShortLabel="@string/alipay_scan">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.suda.openpayshortcut.activity.pay.MainCaptureActivity"
+            android:targetPackage="com.suda.openpayshortcut" />
+    </shortcut>
+
+
+    <!--<shortcut-->
+        <!--android:enabled="true"-->
+        <!--android:icon="@drawable/alipay_shoukuan"-->
+        <!--android:shortcutId="PayeeQRActivity"-->
+        <!--android:shortcutShortLabel="@string/alipay_shoukuan">-->
+
+        <!--<intent-->
+            <!--android:action="android.intent.action.VIEW"-->
+            <!--android:targetClacom.suda.openpayshortcut.activity.pay.PayeeQRActivityvity"-->
+            <!--android:targetPackage="com.suda.openpayshortcut" />-->
+    <!--</shortcut>-->
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/wx_fukuan"
+        android:shortcutId="WalletOfflineCoinPurseUI"
+        android:shortcutShortLabel="@string/wx_fukuan">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.suda.openpayshortcut.activity.pay.WalletOfflineCoinPurseUI"
+            android:targetPackage="com.suda.openpayshortcut" />
+    </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/wx_scan"
+        android:shortcutId="BaseScanUI"
+        android:shortcutShortLabel="@string/wx_scan">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.suda.openpayshortcut.activity.pay.BaseScanUI"
+            android:targetPackage="com.suda.openpayshortcut" />
+    </shortcut>
+
+    <!--<shortcut-->
+        <!--android:enabled="true"-->
+        <!--android:icon="@drawable/wx_shoukuan"-->
+        <!--android:shortcutId="CollectMainUI"-->
+        <!--android:shortcutShortLabel="@string/wx_shoukuan">-->
+
+        <!--<intent-->
+            <!--android:action="android.intent.action.VIEW"-->
+            <!--android:targetClacom.suda.openpayshortcut.activity.pay.CollectMainUIinUI"-->
+            <!--android:targetPackage="com.suda.openpayshortcut" />-->
+    <!--</shortcut>-->
+
+</shortcuts>

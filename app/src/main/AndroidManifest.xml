@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.suda.openpayshortcut">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+        </activity>
+
+        <activity
+            android:name=".activity.pay.BaseScanUI"
+            android:launchMode="singleInstance"
+            android:process=":pay" />
+        <activity
+            android:name=".activity.pay.CollectMainUI"
+            android:launchMode="singleInstance"
+            android:process=":pay" />
+        <activity
+            android:name=".activity.pay.MainCaptureActivity"
+            android:launchMode="singleInstance"
+            android:process=":pay" />
+        <activity
+            android:name=".activity.pay.OspTabHostActivity"
+            android:launchMode="singleInstance"
+            android:process=":pay" />
+        <activity
+            android:name=".activity.pay.PayeeQRActivity"
+            android:launchMode="singleInstance"
+            android:process=":pay" />
+        <activity
+            android:name=".activity.pay.WalletOfflineCoinPurseUI"
+            android:launchMode="singleInstance"
+            android:process=":pay" />
+
+        <receiver android:name=".service.AliWeiXinWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="WIDGET_BROADCAST" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/mywidget" />
+        </receiver>
+
+        <receiver android:name=".service.AliWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="WIDGET_BROADCAST" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/aliwidget" />
+        </receiver>
+
+        <receiver android:name=".service.WeixinWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="WIDGET_BROADCAST" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/weixinwidget" />
+        </receiver>
+
+    </application>
+
+</manifest>
