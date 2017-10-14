@@ -22,30 +22,24 @@
 
         <activity
             android:name=".activity.pay.BaseScanUI"
-            android:launchMode="singleInstance"
-            android:process=":pay" />
+            android:launchMode="singleInstance" />
         <activity
             android:name=".activity.pay.CollectMainUI"
-            android:launchMode="singleInstance"
-            android:process=":pay" />
+            android:launchMode="singleInstance" />
         <activity
             android:name=".activity.pay.MainCaptureActivity"
-            android:launchMode="singleInstance"
-            android:process=":pay" />
+            android:launchMode="singleInstance" />
         <activity
             android:name=".activity.pay.OspTabHostActivity"
-            android:launchMode="singleInstance"
-            android:process=":pay" />
+            android:launchMode="singleInstance" />
         <activity
             android:name=".activity.pay.PayeeQRActivity"
-            android:launchMode="singleInstance"
-            android:process=":pay" />
+            android:launchMode="singleInstance" />
         <activity
             android:name=".activity.pay.WalletOfflineCoinPurseUI"
-            android:launchMode="singleInstance"
-            android:process=":pay" />
+            android:launchMode="singleInstance" />
 
-        <receiver android:name=".service.AliWeiXinWidget">
+        <receiver android:name=".service.AllWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="WIDGET_BROADCAST" />
@@ -53,7 +47,7 @@
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/mywidget" />
+                android:resource="@xml/allwidget" />
         </receiver>
 
         <receiver android:name=".service.AliWidget">
