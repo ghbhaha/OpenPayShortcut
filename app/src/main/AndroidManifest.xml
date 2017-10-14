@@ -22,21 +22,27 @@
 
         <activity
             android:name=".activity.pay.BaseScanUI"
+            android:theme="@android:style/Theme.NoDisplay"
             android:launchMode="singleInstance" />
         <activity
             android:name=".activity.pay.CollectMainUI"
+            android:theme="@android:style/Theme.NoDisplay"
             android:launchMode="singleInstance" />
         <activity
             android:name=".activity.pay.MainCaptureActivity"
+            android:theme="@android:style/Theme.NoDisplay"
             android:launchMode="singleInstance" />
         <activity
             android:name=".activity.pay.OspTabHostActivity"
+            android:theme="@android:style/Theme.NoDisplay"
             android:launchMode="singleInstance" />
         <activity
             android:name=".activity.pay.PayeeQRActivity"
+            android:theme="@android:style/Theme.NoDisplay"
             android:launchMode="singleInstance" />
         <activity
             android:name=".activity.pay.WalletOfflineCoinPurseUI"
+            android:theme="@android:style/Theme.NoDisplay"
             android:launchMode="singleInstance" />
 
         <receiver android:name=".service.AllWidget">
