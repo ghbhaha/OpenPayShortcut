@@ -3,7 +3,10 @@ package com.suda.openpayshortcut.activity;
 import android.didikee.donate.AlipayDonate;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.widget.TextView;
 
 import com.suda.openpayshortcut.R;
 import com.suda.openpayshortcut.util.RootShell;
@@ -17,8 +20,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
+        showGithub();
     }
 
     public void donateAlipay(View view) {
@@ -34,18 +36,10 @@ public class MainActivity extends AppCompatActivity {
         rootShell.close();
     }
 
-    private void execShell(String paramString) {
-        try {
-            OutputStream outputStream = Runtime.getRuntime().exec("su").getOutputStream();
-            DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
-            dataOutputStream.writeBytes(paramString);
-            dataOutputStream.flush();
-            dataOutputStream.close();
-            outputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
+    private void showGithub(){
+        ((TextView)findViewById(R.id.github_tv)).setText(Html.fromHtml("Github 项目地址：<a href=\"https://github.com/ghbhaha/OpenPayShortcut\">https://github.com/ghbhaha/OpenPayShortcut</a>"));
+        ((TextView)findViewById(R.id.github_tv)).setMovementMethod(LinkMovementMethod.getInstance());
+    }
 
 }
