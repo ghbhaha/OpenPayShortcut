@@ -8,4 +8,6 @@
     <string name="wx_scan">扫码（微）</string>
     <string name="wx_shoukuan">收款微）</string>
 
+    <string name="accessibility_desc">免root使用微信支付相关功能</string>
+
 </resources>

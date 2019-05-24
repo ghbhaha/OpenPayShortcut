@@ -3,8 +3,6 @@ package com.suda.openpayshortcut.activity.pay;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.suda.openpayshortcut.util.RootShell;
-
 /**
  * Created by guhaibo on 2017/10/13.
  */
