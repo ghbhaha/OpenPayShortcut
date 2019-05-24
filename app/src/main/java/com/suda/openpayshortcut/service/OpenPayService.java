@@ -14,10 +14,10 @@ import java.util.List;
 public class OpenPayService extends AccessibilityService {
 
 
-    public static boolean isOpenPop = false;
-    public static boolean isOpenScan = false;
-    public static boolean isOpenPay = false;
-    public static boolean isOpenWallet = false;
+    public static boolean isOpenPop = true;
+    public static boolean isOpenScan = true;
+    public static boolean isOpenPay = true;
+    public static boolean isOpenWallet = true;
 
     /**
      * 初始化扫一扫参数
@@ -51,6 +51,7 @@ public class OpenPayService extends AccessibilityService {
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
+        Log.d("@@@@", event.getClassName().toString());
         if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
             AccessibilityNodeInfo root = getRootInActiveWindow();
             //第一步打开popwindow
@@ -62,9 +63,11 @@ public class OpenPayService extends AccessibilityService {
                         if ("更多功能按钮".equals(parent.getContentDescription()) && parent.isClickable()) {
                             parent.performAction(AccessibilityNodeInfo.ACTION_CLICK);
                             isOpenPop = true;
+                            break;
                         }
                         parent.recycle();
                     }
+                    jb.recycle();
                 }
             } else {
                 if (!isOpenScan) {
@@ -72,7 +75,11 @@ public class OpenPayService extends AccessibilityService {
                     for (AccessibilityNodeInfo jb : jbs) {
                         if ("com.tencent.mm:id/cx".equals(jb.getViewIdResourceName())) {
                             if (doClick(jb)) {
+                                jb.recycle();
                                 isOpenScan = true;
+                                break;
+                            } else {
+                                jb.recycle();
                             }
                         }
                     }
@@ -83,8 +90,12 @@ public class OpenPayService extends AccessibilityService {
                     for (AccessibilityNodeInfo jb : jbs) {
                         if ("com.tencent.mm:id/cx".equals(jb.getViewIdResourceName())) {
                             if (doClick(jb)) {
+                                jb.recycle();
                                 isOpenPay = true;
+                                break;
                             }
+                        } else {
+                            jb.recycle();
                         }
                     }
                 }
@@ -93,11 +104,16 @@ public class OpenPayService extends AccessibilityService {
                     List<AccessibilityNodeInfo> jbs = root.findAccessibilityNodeInfosByText("二维码收款");
                     for (AccessibilityNodeInfo jb : jbs) {
                         if (doClick(jb)) {
+                            jb.recycle();
                             isOpenWallet = true;
+                            break;
+                        } else {
+                            jb.recycle();
                         }
                     }
                 }
             }
+            root.recycle();
         }
     }
 
