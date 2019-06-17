@@ -12,6 +12,8 @@ import com.suda.openpayshortcut.R;
 import com.suda.openpayshortcut.activity.pay.BaseScanUI;
 import com.suda.openpayshortcut.activity.pay.CollectMainUI;
 import com.suda.openpayshortcut.activity.pay.WalletOfflineCoinPurseUI;
+import com.suda.openpayshortcut.util.BitmapUtil;
+import com.suda.openpayshortcut.util.SharePreferenceUtil;
 
 /**
  * Created by guhaibo on 2017/10/13.
@@ -51,17 +53,23 @@ public class WeixinWidget extends AppWidgetProvider {
         if (intent.getAction().equals(WIDGET_BROADCAST)) {
             RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.wixin_widget_layout);
 
+            float progress = (SharePreferenceUtil.getSharePreferenceUtil(context).getValue("alpha", 1f));
+            rv.setInt(R.id.widget_bg, "setImageAlpha", (int)(progress * 255));
+
             Intent intentNew = new Intent(context, CollectMainUI.class);
             PendingIntent pending = PendingIntent.getActivity(context, 0, intentNew, PendingIntent.FLAG_UPDATE_CURRENT);
             rv.setOnClickPendingIntent(R.id.CollectMainUI, pending);
+            rv.setImageViewBitmap(R.id.CollectMainUI, BitmapUtil.getRoundCornerBitmap(context, R.drawable.wx_shoukuan));
 
             intentNew = new Intent(context, WalletOfflineCoinPurseUI.class);
             pending = PendingIntent.getActivity(context, 0, intentNew, PendingIntent.FLAG_UPDATE_CURRENT);
             rv.setOnClickPendingIntent(R.id.WalletOfflineCoinPurseUI, pending);
+            rv.setImageViewBitmap(R.id.WalletOfflineCoinPurseUI, BitmapUtil.getRoundCornerBitmap(context, R.drawable.wx_fukuan));
 
             intentNew = new Intent(context, BaseScanUI.class);
             pending = PendingIntent.getActivity(context, 0, intentNew, PendingIntent.FLAG_UPDATE_CURRENT);
             rv.setOnClickPendingIntent(R.id.BaseScanUI, pending);
+            rv.setImageViewBitmap(R.id.BaseScanUI, BitmapUtil.getRoundCornerBitmap(context, R.drawable.wx_scan));
 
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             ComponentName componentName = new ComponentName(context, WeixinWidget.class);
