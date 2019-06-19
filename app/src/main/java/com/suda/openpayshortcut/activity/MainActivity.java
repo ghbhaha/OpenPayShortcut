@@ -2,6 +2,8 @@ package com.suda.openpayshortcut.activity;
 
 import android.content.Intent;
 import android.didikee.donate.AlipayDonate;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
@@ -59,13 +61,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void refreshCorner() {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(getResources(), R.drawable.alipay_fukuan, options);
+        final int maxWidth = options.outWidth / 2;
         refreshCorner(SharePreferenceUtil.getSharePreferenceUtil(this).getValue("radius", 10f));
-        float progress = (SharePreferenceUtil.getSharePreferenceUtil(this).getValue("radius", 10f) / 50f * 1000);
+        float progress = (SharePreferenceUtil.getSharePreferenceUtil(this).getValue("radius", 10f) / maxWidth * 1000);
         ((AppCompatSeekBar) findViewById(R.id.round_corner_seek)).setProgress((int) progress);
         ((AppCompatSeekBar) findViewById(R.id.round_corner_seek)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                refreshCorner(50f * (progress * 1f / 1000f));
+                refreshCorner(maxWidth * (progress * 1f / 1000f));
             }
 
             @Override
@@ -75,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                SharePreferenceUtil.getSharePreferenceUtil(MainActivity.this).putValue("radius", 50f * (seekBar.getProgress() * 1f / 1000f));
+                SharePreferenceUtil.getSharePreferenceUtil(MainActivity.this).putValue("radius", maxWidth * (seekBar.getProgress() * 1f / 1000f));
                 Intent intent = new Intent();
                 intent.setAction(WeixinWidget.WIDGET_BROADCAST);
                 sendBroadcast(intent);

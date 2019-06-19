@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
@@ -24,19 +25,16 @@ public class BitmapUtil {
         Bitmap bitmapSrc = BitmapFactory.decodeResource(context.getResources(), id);
         Bitmap bitmapDest = Bitmap.createBitmap(bitmapSrc.getWidth(), bitmapSrc.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmapDest);
-        canvas.drawBitmap(bitmapSrc, new Matrix(), null);
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-        canvas.drawBitmap(makeRoundRectBitmap(bitmapDest.getWidth(), bitmapDest.getHeight(), radius), new Matrix(), paint);
+        Path path = new Path();
+        RectF rectF = new RectF(0, 0, bitmapDest.getWidth(), bitmapDest.getHeight());
+        path.addRoundRect(rectF,radius,radius, Path.Direction.CW);
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setStyle(Paint.Style.FILL);
+        canvas.drawPath(path,paint);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmapSrc, new Matrix(), paint);
         return bitmapDest;
     }
 
-    private static Bitmap makeRoundRectBitmap(int width, int height, float radius) {
-        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_4444);
-        Canvas canvas = new Canvas(bitmap);
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setStyle(Paint.Style.FILL);
-        canvas.drawRoundRect(new RectF(0, 0, width, height), radius, radius, paint);
-        return bitmap;
-    }
 }
